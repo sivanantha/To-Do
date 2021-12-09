@@ -1,143 +1,187 @@
 * {
-    margin: 0;
-    box-sizing: border-box;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-html, body {
-    height: 100%;
+html,
+body {
+  height: 100%;
 }
 
 body {
-    background-color: white;
-    font-family: "Segoe","Segoe UI","Arial","sans-serif";
+  background-color: white;
+  font-size: 1vw;
+  font-family: "Segoe", "Segoe UI", "Arial", "sans-serif";
 }
 
 a {
-    text-decoration: none;
-    cursor: pointer;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 button {
-    border: none;
-    cursor: pointer;
-    background-color: transparent;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
 }
 
 .grid-container {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
+  height: 92%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
 }
 
 .navbar {
-    background-color: #0078D7;
-    color: white;
-    height: 48px;
+  background-color: #0078d7;
+  color: white;
+  padding: 10px;
+  height: 48px;
+}
+
+.navbar-title {
+  display: inline-block;
+  font-size: 1.15vw;
+  font-weight: 600;
+  vertical-align: top;
 }
 
 .content {
-    width: 100%;
+  width: 100%;
 }
 
-.navbar span, .toolbar span {
-    margin: 5px;
-    display: inline-block;
+.navbar span,
+.toolbar span {
+  margin: 5px;
+  display: inline-block;
 }
 
 .sidebar-left {
-    background-color: #F4F4F4;
-    width: 0px;
-    overflow-x: hidden;
-    transition: width 0.3s;
+  position: relative;
+  background-color: #f4f4f4;
+  width: 0px;
+  overflow-x: hidden;
+  transition: width 0.3s;
 }
 
 .sidebar-header {
-    margin: 20px auto;
+  margin: 20px auto;
 }
 
 .sidebar-header button {
-    margin-left: 20px;
-    cursor: pointer;
+  margin-left: 20px;
+  cursor: pointer;
 }
 
 .sidebar-btn {
-    width: 30px;
-    height: 30px;
-    border: none;
+  width: 35px;
+  height: 35px;
+  border: none;
 }
 
+.sidebar-btn:hover {
+  background-color: #fafafa;
+  box-shadow: 0 0 0 1px #ededed;
+}
 .sidebar-content div {
-    height: 40px;
-    padding: 12px;
+  height: 40px;
+  padding: 12px;
 }
 
 .sidebar-content div:hover {
-    background-color: #ededed;
-    cursor: pointer;
+  background-color: #fafafa;
+  cursor: pointer;
 }
 
 .sidebar-content div:active {
-    background-color: #ededed;
+  background-color: #ededed;
+}
+
+.icon-size-24 {
+    font-size: 1.2vw;
+}
+
+.fontIcon {
+    vertical-align: middle;
 }
 
 .sidebar-content a {
-    display: inline-block;
-    vertical-align: top;
-    font-size: 14px;
-    font-weight: 400;
-    margin-left: 10px;
-    opacity: 0.8;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 1.1vw;
+  font-weight: 400;
+  margin-left: 10px;
+  opacity: 0.8;
 }
 
 .sidebar-content i {
-    vertical-align: top;
-    
+  vertical-align: middle;
+}
+
+.newlist-container {
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-between;
 }
 
 .sidebar-content div:last-child {
-    background-color: blue;
-    position: relative;
-    bottom: 0px;
+  position: absolute;
+  bottom: 13px;
+  margin: 0px;
+  padding: 0px;
+  border-top: 1px solid #eaeaea;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sidebar-content div:last-child:hover {
+  background-color: transparent;
+}
+
+.sidebar-content div:last-child a {
+  padding: 18px 18px;
+  margin: 0px;
+  font-size: 16px;
+}
+
+.sidebar-content div:last-child a:hover {
+  background-color: #ededed;
 }
 
 .sidebar-right {
-    
 }
 
 .toolbar {
-    display: grid;
-    grid-template-columns: 75% 25%;
-    grid-template-rows: auto auto;
-    align-items: center;
-    margin: 25px 10px 10px 20px;
+  display: grid;
+  grid-template-columns: 75% 25%;
+  grid-template-rows: auto auto;
+  align-items: center;
+  margin: 15px 10px 10px 20px;
 }
 
 .toolbar-title {
-    font-weight: 500;
-    font-size: 1.5vw;
+  font-weight: 500;
+  font-size: 1.5vw;
 }
 
 .date-container {
-    font-size: 0.8vw;
-    font-weight: 200;
+  font-size: 0.8vw;
+  font-weight: 200;
 }
 
 .toolbar-actions {
-    display: grid;
-    grid-template-columns: auto auto;
-    justify-content: center;
-    align-items: stretch;
-    column-gap: 30px;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  align-items: stretch;
+  column-gap: 30px;
+  font-size: 1.1vw;
 }
 
 .toolbar-actions span {
-    padding: 8px;
+  padding: 8px;
 }
 
 .toolbar-actions span:hover {
-    background-color: #ededed;
+  background-color: #ededed;
 }
-
-
-
