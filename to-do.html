@@ -19,64 +19,87 @@
     </div>
     <div class="grid-container">
         <div class="sidebar-left">
-            <div class="sidebar-header">
-                <button class="sidebar-btn" onclick="closeSideBar()"> <i
-                        class="icon fontIcon ms-Icon ms-Icon--GlobalNavButton icon-size-24"></i></button>
+            <div>
+                <div class="sidebar-header">
+                    <button class="sidebar-btn" onclick="closeSideBar()"> <i
+                            class="icon fontIcon ms-Icon ms-Icon--GlobalNavButton icon-size"></i></button>
+                </div>
+                <div class="sidebar-content">
+                    <div><i class="icon fontIcon ms-Icon ms-Icon--Sunny icon-size" aria-hidden="true"></i><a>My Day</a>
+                    </div>
+                    <div><i class="icon fontIcon ms-Icon ms-Icon--FavoriteStar icon-size"
+                            aria-hidden="true"></i><a>Important</a></div>
+                    <div><i class="icon fontIcon ms-Icon ms-Icon--CalendarWeek icon-size"
+                            aria-hidden="true"></i><a>Planned</a></div>
+                    <div><i class="icon fontIcon ms-Icon ms-fontColor-green ms-Icon--Contact icon-size"
+                            aria-hidden="true"></i><a>Assigned
+                            to
+                            me</a></div>
+                    <div><i class="icon fontIcon ms-Icon ms-fontColor-blue ms-Icon--Home icon-size"
+                            aria-hidden="true"></i><a>Tasks</a>
+                    </div>
+
+                    <div class="newlist-container"><span><i
+                                class="icon fontIcon ms-fontColor-blue ms-Icon ms-Icon--Add icon-size"
+                                aria-hidden="true"></i><a>New list</a></span><span><i
+                                class="icon svgIcon ms-Icon create-group-24"><svg focusable="false" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <g fill-rule="evenodd" stroke="none" stroke-width="1">
+                                        <path
+                                            d="M16.9996,3.9997 L18.0006,3.9997 L18.0006,6.0007 L20.0006,6.0007 L20.0006,7.0007 L18.0006,7.0007 L18.0006,8.9997 L16.9996,8.9997 L16.9996,7.0007 L14.9996,7.0007 L14.9996,6.0007 L16.9996,6.0007 L16.9996,3.9997 Z M19,16.5 L19,12 L20,12 L20,16.5 C20,17.879 18.878,19 17.5,19 L6.5,19 C5.122,19 4,17.879 4,16.5 L4,6.5 C4,5.121 5.122,4 6.5,4 L12,4 L12,5 L6.5,5 C5.673,5 5,5.673 5,6.5 L5,16.5 C5,17.327 5.673,18 6.5,18 L17.5,18 C18.327,18 19,17.327 19,16.5 Z M8,15 L8,8 L9,8 L9,15 L8,15 Z">
+                                        </path>
+                                    </g>
+                                </svg></i></span>
+                    </div>
+                </div>
+
             </div>
-            <div class="sidebar-content">
-                <div><i class="icon fontIcon ms-Icon ms-Icon--Sunny icon-size-24" aria-hidden="true"></i><a>My Day</a>
-                </div>
-                <div><i class="icon fontIcon ms-Icon ms-Icon--FavoriteStar icon-size-24"
-                        aria-hidden="true"></i><a>Important</a></div>
-                <div><i class="icon fontIcon ms-Icon ms-Icon--CalendarWeek icon-size-24"
-                        aria-hidden="true"></i><a>Planned</a></div>
-                <div><i class="icon fontIcon ms-Icon ms-Icon--Contact icon-size-24" aria-hidden="true"></i><a>Assigned
-                        to
-                        me</a></div>
-                <div><i class="icon fontIcon ms-Icon ms-Icon--Home icon-size-24" aria-hidden="true"></i><a>Tasks</a>
-                </div>
-                <div class="newlist-container"><span><i class="icon fontIcon ms-Icon ms-Icon--Add icon-size-24"
-                            aria-hidden="true"></i><a>New list</a></span><span><i
-                            class="icon svgIcon ms-Icon create-group-24"><svg focusable="false" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <g fill-rule="evenodd" stroke="none" stroke-width="1">
-                                    <path
-                                        d="M16.9996,3.9997 L18.0006,3.9997 L18.0006,6.0007 L20.0006,6.0007 L20.0006,7.0007 L18.0006,7.0007 L18.0006,8.9997 L16.9996,8.9997 L16.9996,7.0007 L14.9996,7.0007 L14.9996,6.0007 L16.9996,6.0007 L16.9996,3.9997 Z M19,16.5 L19,12 L20,12 L20,16.5 C20,17.879 18.878,19 17.5,19 L6.5,19 C5.122,19 4,17.879 4,16.5 L4,6.5 C4,5.121 5.122,4 6.5,4 L12,4 L12,5 L6.5,5 C5.673,5 5,5.673 5,6.5 L5,16.5 C5,17.327 5.673,18 6.5,18 L17.5,18 C18.327,18 19,17.327 19,16.5 Z M8,15 L8,8 L9,8 L9,15 L8,15 Z">
-                                    </path>
-                                </g>
-                            </svg></i></span></div>
-                <div>
-                    <a><i class="icon fontIcon ms-Icon ms-Icon--Mail icon-size-24" aria-hidden="true"></i></a>
-                    <a><i class="icon fontIcon ms-Icon ms-Icon--CalendarWeek icon-size-24" aria-hidden="true"></i></a>
-                    <a><i class="icon fontIcon ms-Icon ms-Icon--People icon-size-24" aria-hidden="true"></i></a>
-                    <a><i class="icon fontIcon ms-Icon ms-Icon--Attach icon-size-24" aria-hidden="true"></i></a>
-                    <a><i class="icon fontIcon ms-Icon ms-Icon--ToDoLogoOutline icon-size-24"
-                            aria-hidden="true"></i></a>
-                </div>
+            <div class="sidebar-bottom">
+                <a><i class="icon fontIcon ms-Icon ms-fontColor-black ms-Icon--Mail icon-size"
+                        aria-hidden="true"></i></a>
+                <a><i class="icon fontIcon ms-Icon ms-fontColor-black ms-Icon--CalendarWeek icon-size"
+                        aria-hidden="true"></i></a>
+                <a><i class="icon fontIcon ms-Icon ms-fontColor-black ms-Icon--People icon-size"
+                        aria-hidden="true"></i></a>
+                <a><i class="icon fontIcon ms-Icon ms-fontColor-black ms-Icon--Attach icon-size"
+                        aria-hidden="true"></i></a>
+                <a><i class="icon fontIcon ms-Icon ms-fontColor-blue ms-Icon--ToDoLogoOutline icon-size"
+                        aria-hidden="true"></i></a>
             </div>
         </div>
-        <div class="content">
+
+        <div class="content-container">
             <div class="toolbar">
                 <div>
                     <button id="sidebar-open-btn" class="sidebar-btn" onclick="openSideBar()">
-                        <i class="icon ms-Icon ms-Icon--GlobalNavButton icon-size-24"></i>
+                        <i class="icon ms-Icon ms-Icon--GlobalNavButton icon-size"></i>
                     </button>
-                    <span class="toolbar-title">My Day</span>
-                    <button class="list-options"><i class="icon fontIcon ms-Icon ms-Icon--More icon-size-24"
+                    <span class="toolbar-title">My Day<div class="date-container"></div></span>
+                    <button class="list-options"><i class="icon fontIcon ms-Icon ms-Icon--More icon-size"
                             aria-hidden="true"></i></button>
                 </div>
                 <div class="toolbar-actions">
-                    <span><i class="icon fontIcon ms-Icon ms-Icon--Sort icon-size-24" aria-hidden="true"></i>
+                    <span><i class="icon fontIcon ms-Icon ms-Icon--Sort icon-size" aria-hidden="true"></i>
                         Sort</span>
-                    <span><i class="icon fontIcon ms-Icon ms-Icon--Lightbulb icon-size-24" aria-hidden="true"></i>
-                        Suggestion</span>
+                    <span><i class="icon fontIcon ms-Icon ms-Icon--Lightbulb icon-size" aria-hidden="true"></i>
+                        Suggestions</span>
                 </div>
-                <div><span class="date-container">Wednesday, December 8</span></div>
+                
+            </div>
+            <div class="task-list-container">
+                <div class="add-task">
+                    <button>
+                        <i class="icon fontIcon ms-Icon ms-Icon--Add icon-size" aria-hidden="true"></i>
+                    </button>
+                    <input type="text" name="task" placeholder="Add a task">
+                </div>
+                <div class="background-lines">
+                </div>
+
             </div>
         </div>
 
         <div class="sidebar-right">
-
         </div>
     </div>
 </body>
