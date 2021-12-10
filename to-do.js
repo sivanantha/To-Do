@@ -7,7 +7,7 @@ let sidebarOpenButton = document.getElementById("sidebar-open-btn");
 })();
 
 function openSideBar() {
-    sidebar.style.width = "27%";
+    sidebar.style.width = "21vw";
     sidebarOpenButton.style.display = "none";
 
 }
