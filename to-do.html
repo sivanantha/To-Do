@@ -15,13 +15,13 @@
 <body>
     <div class="navbar">
         <span><span class="icon ms-Icon ms-fontColor-white ms-Icon--WaffleOffice365"></span>
-        <span class="navbar-title">To Do</span></span>
+            <span class="navbar-title">To Do</span></span>
     </div>
     <div class="grid-container">
         <div class="sidebar-left">
             <div>
                 <div class="sidebar-header">
-                    <button class="sidebar-btn" onclick="closeSideBar()"> <i
+                    <button class="sidebar-btn" id="sidebar-close-btn"> <i
                             class="icon ms-Icon ms-Icon--GlobalNavButton"></i></button>
                 </div>
                 <div class="sidebar-content">
@@ -62,7 +62,7 @@
         <div class="content-container">
             <div class="toolbar">
                 <div>
-                    <button id="sidebar-open-btn" class="sidebar-btn" onclick="openSideBar()">
+                    <button id="sidebar-open-btn" class="sidebar-btn">
                         <i class="icon ms-Icon ms-Icon--GlobalNavButton"></i>
                     </button>
                     <span class="toolbar-title">My Day<div class="date-container"></div></span>
@@ -92,18 +92,18 @@
         <div class="right-column">
             <div>
                 <div class="task-details">
-                    <div>
-                        <div class="task-title">
-                           <span><i class="icon ms-Icon ms-Icon--RadioBtnOff"></i><span>task name</span></span>
-                           <span><i class="icon ms-Icon ms-Icon--FavoriteStar"></i></span>
-                        </div>
-                        <div class="add-steps">
-                            <span> <button>
-                                    <i class="icon ms-Icon ms-Icon--Add" aria-hidden="true"></i>
-                                </button>
-                                <input type="text" name="task" placeholder="Add step"></span>
-                        </div>
+                    <div class="task-title">
+                        <span><i class="icon ms-Icon ms-Icon--RadioBtnOff"></i><span>task name</span></span>
+                        <span><i class="icon ms-Icon ms-Icon--FavoriteStar"></i></span>
                     </div>
+
+                    <div class="add-steps">
+                        <span> <button>
+                                <i class="icon ms-Icon ms-Icon--Add" aria-hidden="true"></i>
+                            </button>
+                            <input type="text" name="task" placeholder="Add step"></span>
+                    </div>
+
 
                     <div class="added-to-myday">
                         <span><i class="icon ms-Icon ms-Icon--Sunny" aria-hidden="true"></i>
