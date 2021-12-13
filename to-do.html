@@ -3,7 +3,7 @@
 
 <head>
     <title>To-Do</title>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="https://res-1.cdn.office.net/todo/430299_2.58.3/favicon.ico">
     <link rel="stylesheet"
@@ -27,7 +27,8 @@
                 <div class="sidebar-content">
                     <div id="my-day"><i class="icon ms-Icon ms-Icon--Sunny" aria-hidden="true"></i><a>My Day</a>
                     </div>
-                    <div id="important"><i class="icon ms-Icon ms-Icon--FavoriteStar" aria-hidden="true"></i><a>Important</a></div>
+                    <div id="important"><i class="icon ms-Icon ms-Icon--FavoriteStar"
+                            aria-hidden="true"></i><a>Important</a></div>
                     <div dir="ltr"><i class="icon ms-Icon ms-Icon--Calendar" aria-hidden="true"></i><a>Planned</a></div>
                     <div><i class="icon ms-Icon ms-Icon--Contact" aria-hidden="true"></i><a>Assigned
                             to
@@ -102,7 +103,7 @@
             <div>
                 <div class="task-details">
                     <div class="task-title">
-                        <span><i class="icon ms-Icon ms-Icon--RadioBtnOff"></i><span>task name</span></span>
+                        <span><i class="icon ms-Icon ms-Icon--RadioBtnOff"></i><span id="task-name">task name</span></span>
                         <span><i class="icon ms-Icon ms-Icon--FavoriteStar"></i></span>
                     </div>
 
@@ -112,7 +113,9 @@
                             </button>
                             <input type="text" name="task" placeholder="Add step"></span>
                     </div>
-
+                    <div class="steps-container">
+                        
+                    </div>
 
                     <div class="added-to-myday">
                         <span><i class="icon ms-Icon ms-Icon--Sunny" aria-hidden="true"></i>

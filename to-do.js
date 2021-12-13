@@ -15,11 +15,17 @@
   const myDay = document.getElementById("my-day");
   const important = document.getElementById("important");
   const tasksContainer = taskInput.parentNode.nextElementSibling;
+  const createStepInput = document.querySelector(".add-steps input");
+  const taskPanel = document.querySelector(".right-column");
+  const stepsContainer = document.querySelector(".steps-container");
+  const middleColumn = document.querySelector(".middle-column");
   const tasks = new Map();
   tasks.set("myDay", []);
   tasks.set("important", []);
   let currentPage = "myDay";
+  
   function init() {
+    showMyDay();
     bindEventListeners();
     setTodayDate();
   }
@@ -32,17 +38,34 @@
     addListener(taskInput, "keyup", createTask);
     addListener(myDay, "click", showMyDay);
     addListener(important, "click", showImportant);
+    addListener(tasksContainer, "click", openTaskPanel);
+    addListener(createStepInput, "keyup", createStep);
   }
 
   function addListener(element, event, listener) {
     element.addEventListener(event, listener);
   }
 
-  function getSnippet(snippetName) {
-    request = new XMLHttpRequest();
-    request.open("GET", `snippets/${snippetName}`, true);
+  function getSnippet(snippetName, handler, parameter) {
+    let request = new XMLHttpRequest();
+    request.open("GET", `snippets/${snippetName}.html`, true);
+    request.responseType = "text";
+    request.onload = () => {
+      handler(request.responseText, parameter);
+    }
     request.send();
-    return request.responseText;
+    return request;
+  }
+
+  function insertHtml(parent, html) {
+    parent.innerHTML = html;
+  }
+
+  function insertProperty(html, propertyName, propertyValue) {
+    var propertyToReplace = "{{" + propertyName + "}}";
+    html = html
+      .replace(new RegExp(propertyToReplace, "g"), propertyValue);
+    return html;
   }
 
   function openSideBar() {
@@ -93,50 +116,79 @@
       let taskName = taskInput.value;
       console.log(tasks.get(currentPage));
       tasks.get(currentPage).push({name: taskName, steps:[]});
-      addTaskToPage(taskName);
+      getSnippet("task-snippet", addTaskToPage);
     }
   }
 
-  function addTaskToPage(taskName) {
-    let div = document.createElement("div");
-    let radioButton = document.createElement("i");
-    let starIcon = document.createElement("i");
-    let title = document.createElement("span");
-    radioButton.classList.add("icon", "ms-Icon", "ms-Icon--RadioBtnOff");
-    starIcon.classList.add("icon", "ms-Icon", "ms-Icon--FavoriteStar");
-    div.classList.add("task");
-    div.appendChild(radioButton);
-    title.appendChild(document.createTextNode(taskName));
-    div.appendChild(title);
-    div.appendChild(starIcon);
-    addListener(title, "click", openTaskPanel);
-    taskInput.parentNode.nextElementSibling.insertBefore(
-      div,
-      tasksContainer.firstChild
-    );
+  function addTaskToPage(templateHtml) {
+    let html = "";
+    for (let task of tasks.get(currentPage)) {
+      html = insertProperty(templateHtml, "taskName", task.name) + html;
+    }
+    tasksContainer.innerHTML = html;
     taskInput.value = "";
   }
 
-  function openTaskPanel() {
+  function createStep(key) {
+    console.log(key);
+    if (key.code === "Enter") {
+      let taskName = createStepInput.parentNode.parentNode.previousElementSibling.innerText;
+      console.log(taskName);
+      
+      for (let task of tasks.get(currentPage)) {
+        if (task.name === taskName) {
+          console.log(taskName);
+          task.steps.push(createStepInput.value);
+          getSnippet("step-snippet", addStepToPage, task.steps);
+        }
+      }
+    }
+  }
+
+  function addStepToPage(templateHtml, parameter) {
+    let html = "";
+    console.log(parameter);
+    for (let step of parameter) {
+      html = insertProperty(templateHtml, "step", step) + html;
+    }
+    stepsContainer.innerHTML = html;
+    createStepInput.value = "";
+  }
+
+  function loadTaskPanel(templateHtml) {
+    // console.log(parameter);
+    // let html = "";
+    // html = insertProperty(templateHtml, "taskName", parameter)
+    // taskPanel.innerHTML = html;
+  }
+
+  function openTaskPanel(event) {
+    getSnippet("task-panel", loadTaskPanel, event.target.innerText);
+    document.getElementById("task-name").innerText = event.target.innerText;
     taskDetailsPanel.style.width = "25%";
+    event.stopPropagation();
   }
 
   function showMyDay() {
-    let myDayTasks = tasks.get("myDay");
     currentPage = "myDay";
-    console.log(myDayTasks);
-    for (let task of myDayTasks) {
-      addTaskToPage(task.name);
-    }
+    getSnippet("middle-column-snippet", loadMyDay);
+    getSnippet("task-snippet", addTaskToPage);
+  }
+
+  function loadMyDay(templateHtml) {
+    html = insertProperty(templateHtml, "title", "My Day");
+    middleColumn.innerHTML = html;
   }
 
   function showImportant() {
-    let importantTasks = tasks.get("important");
     currentPage = "important";
-    console.log(importantTasks);
-    for (let task of myDayTasks) {
-      addTaskToPage(task.name);
-    }
+    getSnippet("middle-column-snippet", loadImportant);
+    getSnippet("task-snippet", addTaskToPage);
+  }
+
+  function loadImportant(templateHtml) {
+    html = insertProperty(templateHtml, "title", "Important");
+    middleColumn.innerHTML = html;
   }
 
   init();
