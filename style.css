@@ -6,6 +6,7 @@
   box-sizing: border-box;
 }
 
+html,
 body {
   height: 100%;
   overflow: hidden;
@@ -26,20 +27,25 @@ button {
   background-color: transparent;
 }
 
-i {
-  color: #858585;
-}
-
 .icon {
   font-size: 16px;
   display: inline-block;
   vertical-align: middle;
   margin-bottom: 3px;
+  color: #767678; 
+}
+
+.ms-Icon--Contact {
+  color: #5ca52d;
+}
+
+.ms-Icon--WaffleOffice365 {
+  color: white;
 }
 
 .grid-container {
-  height: 92vh;
   width: 100%;
+  height: 93vh;
   display: flex;
   flex-direction: row;
 }
@@ -60,14 +66,14 @@ i {
   margin: 0px 10px;
 }
 
-.content-container {
-  margin: 18px 10px 10px 20px;
+.middle-column {
+  margin: 13px 10px 10px 20px;
   display: flex;
   flex: 1 1 1px;
   flex-direction: column;
 }
 
-.sidebar-left {
+.left-column {
   background-color: #f4f4f4;
   width: 0px;
   overflow-x: hidden;
@@ -79,13 +85,12 @@ i {
 }
 
 .sidebar-header {
-  margin: 18px 0px 13px;
+  margin: 18px 12px 13px;
 }
 
 .sidebar-btn {
   width: 30px;
   height: 30px;
-  margin-left: 12px;
   border: none;
 }
 
@@ -109,7 +114,6 @@ i {
 }
 
 .sidebar-content div:active {
-  color: #0078d7;
   font-weight: 600;
   background-color: #ededed;
 }
@@ -120,13 +124,15 @@ i {
   font-weight: 200;
   margin-left: 5px;
   padding: 8px;
-  opacity: 0.8;
+  color: #34373d;
+}
+
+.lists {
+  margin-top: 30px;
 }
 
 .newlist-container {
   display: flex;
-  margin-top: 20px;
-  padding-right: 12px;
   justify-content: space-between;
   align-items: center;
 }
@@ -148,18 +154,21 @@ i {
 .newlist-container input::-webkit-input-placeholder,
 .right-column input::-webkit-input-placeholder {
   /* Edge */
-  color: #324bdf;
+  color: #2e5cdb;
 }
 
 .newlist-container input::-ms-input-placeholder,
 .right-column input::-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: #324bdf;
+  color: #2e5cdb;
 }
 
-.newlist-container input:focus::placeholder,
-.right-column input:focus::placeholder {
-  color: #324bdf;
+.newlist-container input::placeholder,
+.right-column input::placeholder, .lists .icon, .ms-Icon--Home, .task-title span:first-child i,
+.add-steps i,
+.task-details .added-to-myday,
+.added-to-myday span:first-child i, .sidebar-content div:active, .ms-Icon--ToDoLogoOutline, .task .ms-Icon--RadioBtnOff {
+  color: #2e5cdb;
 }
 
 .newlist-container input:focus::-webkit-input-placeholder,
@@ -185,10 +194,11 @@ i {
 }
 
 .newlist-container svg {
-  fill: blue;
+  fill: #2e5cdb;
+  margin: 5px 10px 0px 0px;
 }
 
-.sidebar-left .sidebar-bottom {
+.left-column .sidebar-bottom {
   margin: 0px;
   width: 100%;
   border-top: 1px solid #e6e6e6;
@@ -197,12 +207,12 @@ i {
   align-items: center;
 }
 
-.sidebar-left .sidebar-bottom a {
+.left-column .sidebar-bottom a {
   margin: 0px;
   padding: 20px 20px 15px 20px;
 }
 
-.sidebar-left .sidebar-bottom a:hover {
+.left-column .sidebar-bottom a:hover {
   background-color: #e9e9e9;
 }
 
@@ -215,21 +225,19 @@ i {
 
 .toolbar-title {
   display: inline-block;
-  position: relative;
   vertical-align: top;
-  width: 140px;
-  margin-left: 10px;
+  margin: 0px 10px;
   font-weight: 500;
   font-size: 1.5vw;
 }
 
 .date-container {
-  position: absolute;
-  top: 30px;
-  left: 0px;
+  position: relative;
+  top: 25px;
+  right: 102px;
   font-size: 0.89vw;
   font-weight: 200;
-  color: #545454;
+  color: #767678;
 }
 
 .toolbar-actions span {
@@ -241,23 +249,39 @@ i {
 }
 
 .task-list-container {
-  margin: 28px 20px 5px 10px;
+  margin: 28px 20px 5px 8px;
 }
 
-.add-task {
-  padding: 5px 15px 0px 0px;
+.add-task, .task {
+  padding: 15px 15px 15px 0px;
   border-bottom: 1px solid #e5e5e5;
 }
 
-.add-task input {
+.add-task input, .task span {
+  display: inline-block;
   margin-left: 10px;
-  height: 50px;
   width: 95%;
   font-size: 1.02vw;
 }
 
+.tasks div:hover {
+  background-color: #f4f4f4;
+}
+
 .task-list-container .add-task:focus-within {
   border-bottom: 1px solid black;
+}
+
+.add-task .ms-Icon--RadioBtnOff {
+  display: none;
+}
+
+.add-task:focus-within .ms-Icon--RadioBtnOff {
+  display: inline-block;
+}
+
+.add-task:focus-within .ms-Icon--Add {
+  display: none;
 }
 
 .background-lines {
@@ -269,15 +293,16 @@ i {
 
 .right-column {
   background-color: #f5f5f5;
-  width: 19%;
+  width: 0%;
   position: relative;
   display: flex;
   flex-direction: column;
-  flex: 0.1 1 auto;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   border-left: 1px solid #eaeaea;
   padding: 10px 10px 0px 10px;
   justify-content: space-between;
+  transition: 0.3s;
 }
 
 .right-column .icon {
@@ -317,13 +342,6 @@ div.added-to-myday .ms-Icon--Cancel {
   display: none;
 }
 
-.task-title span:first-child i,
-.add-steps i,
-.task-details .added-to-myday,
-.added-to-myday span:first-child i {
-  color: #324bdf;
-}
-
 div.remainder {
   flex-direction: column;
   height: fit-content;
@@ -353,14 +371,13 @@ div.remainder > div {
 }
 
 .task-description:focus-within {
-  border: 1px solid #324bdf;
+  border: 1px solid #2e5cdb;
 }
 
 .right-column-footer {
   position: -webkit-sticky;
   position: sticky;
-  bottom: 3px;
-  height: 30px;
+  height: 35px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -370,7 +387,8 @@ div.remainder > div {
 }
 
 .right-column-footer .icon {
-  padding: 6px 10px;
+  padding: 10px;
+  margin: 0px;
 }
 
 .right-column-footer .icon:hover {
