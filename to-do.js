@@ -1,55 +1,50 @@
 "use strict";
 
 (function () {
-  const tasks = new Map();
-  const createListInput = ".newlist-container input";
+  const categories = [
+    { name: "My Day", icon: "ms-Icon--Sunny", tasks: [] },
+    { name: "Important", icon: "ms-Icon--FavoriteStar", tasks: [] },
+    { name: "Planned", icon: "ms-Icon--Calendar", tasks: [] },
+    { name: "Assigned to me", icon: "ms-Icon--Contact", tasks: [] },
+    { name: "Tasks", icon: "ms-Icon--Home", tasks: [] },
+  ];
   const createListContainer = ".newlist-container";
-  const sidebar = ".left-column";
-  const sidebarOpenButton = "#sidebar-open-btn";
-  const sidebarCloseButton = "#sidebar-close-btn";
-  const taskPanelCloseButton = "#task-panel-close-btn";
-  const createtaskInput = ".task-list-container .add-task input";
   const myDay = "#my-day";
   const important = "#important";
-  const createStepInput = ".add-steps input";
-  const taskPanel = ".right-column";
-  const stepsContainer = ".steps-container";
-  const middleColumn = ".middle-column";
-  const tasksContainer = ".tasks";
   const listContainer = ".lists";
   const taskCheckbox = ".tickbox-container";
-  let currentPage = "myDay";
+  let currentPage = "My Day";
+  let currentTask = "";
 
   function init() {
-    tasks.set("myDay", []);
-    tasks.set("important", []);
-    loadMyDay();
+    getSnippet("category-snippet", renderDefaultCategories);
+    getSnippet("middle-column-snippet", renderMiddlePage);
+    bindEventListener("#sidebar-close-btn", "click", toggleSideBar);
+    bindEventListener(".newlist-container input", "keyup", createCategory);
+    bindEventListener("#task-panel-close-btn", "click", toggleTaskPanel);
+    bindEventListener(".add-steps input", "keyup", createStep);
   }
 
-  function bindEventListeners() {
-    addListener(sidebarOpenButton, "click", openSideBar);
-    addListener(sidebarCloseButton, "click", closeSideBar);
-    addListener(taskPanelCloseButton, "click", closeTaskPanel);
-    addListener(createListInput, "keyup", createList);
-    addListener(createtaskInput, "keyup", createTask);
-    addListener(myDay, "click", loadMyDay);
-    addListener(important, "click", loadImportant);
-    addListener(tasksContainer, "click", openTaskPanel);
-    addListener(createStepInput, "keyup", createStep);
-    addListener(listContainer, "click", loadList);
+  function bindEventListener(element, event, listener) {
+    if (element instanceof window.Element) {
+      element.addEventListener(event, listener);
+    } else {
+      document.querySelector(element).addEventListener(event, listener);
+    }
   }
 
-  function addListener(element, event, listener) {
-    document.querySelector(element).addEventListener(event, listener);
+  function bindEventListenerToAll(elements, event, listener) {
+    for (let element of elements) {
+      element.addEventListener(event, listener);
+    }
   }
 
-  function getSnippet(snippetName, handler, parameter) {
+  function getSnippet(snippetName, handler) {
     let request = new XMLHttpRequest();
     request.open("GET", `snippets/${snippetName}.html`, true);
     request.responseType = "text";
     request.onload = () => {
-      handler(request.responseText, parameter);
-      bindEventListeners();
+      handler(request.responseText);
     };
     request.send();
   }
@@ -64,24 +59,12 @@
     return html;
   }
 
-  function openSideBar() {
-    let node = document.querySelector(sidebar);
-    node.style.width = "21vw";
-    node.style.visibility = "visible";
-    document.querySelector(sidebarOpenButton).style.display = "none";
-  }
-
-  function closeSideBar() {
-    let node = document.querySelector(sidebar);
-    node.style.width = "0px";
-    node.style.visibility = "hidden";
-    document.querySelector(sidebarOpenButton).style.display = "inline-block";
-  }
-
-  function closeTaskPanel() {
-    let panel = document.querySelector(taskPanel);
-    panel.style.width = "0px";
-    panel.style.visibility = "hidden";
+  function toggleSideBar() {
+    let node = document.querySelector(".left-column");
+    node.classList.toggle("open-sidebar");
+    document
+      .querySelector("#sidebar-open-btn")
+      .classList.toggle("hide-element");
   }
 
   function getTodayDate() {
@@ -92,145 +75,149 @@
     });
   }
 
-  function createList(key) {
-    if (key.keyCode === 13) {
-      let listName = document.querySelector(createListInput).value;
-      tasks.set(listName, []);
-      addListToPage(listName);
-      currentPage = listName;
-      getSnippet("middle-column-snippet", showList);
-    }
+  function renderDefaultCategories(templateHtml) {
+    renderCategories(templateHtml, categories, ".default-categories");
+    bindEventListenerToAll(document.querySelectorAll(".default-categories a"), "click", changeCategory);
   }
 
-  function addListToPage(listName) {
-    let inputContainer = document.querySelector(createListContainer);
-    let div = document.createElement("div");
-    let icon = document.createElement("i");
-    let link = document.createElement("a");
-    let span = document.createElement("span");
-    span.classList.add("task-count");
-    div.setAttribute("dir", "ltr");
-    icon.classList.add("icon", "ms-Icon", "ms-Icon--BulletedList2");
-    div.appendChild(icon);
-    link.appendChild(document.createTextNode(listName));
-    div.appendChild(link);
-    div.appendChild(span);
-    inputContainer.parentNode.insertBefore(div, inputContainer);
-    document.querySelector(createListInput).value = "";
-  }
-
-  function createTask(key) {
-    if (key.keyCode === 13) {
-      let taskName = document.querySelector(createtaskInput);
-      tasks.get(currentPage).push({ name: taskName.value, steps: [] });
-      getSnippet("task-snippet", addTasksToPage);
-      taskName.value = "";
-    }
-  }
-
-  function addTasksToPage(templateHtml) {
+  function renderCategories(
+    templateHtml,
+    categoryList = categories.slice(5,),
+    targetElement = ".category-container"
+  ) {
     let html = "";
     let temp;
-    for (let task of tasks.get(currentPage)) {
+    for (let category of categoryList) {
+      temp = insertProperty(templateHtml, "category", category.name);
+      html += insertProperty(temp, "icon", category.icon);
+    }
+    insertHtml(targetElement, html);
+    bindEventListenerToAll(document.querySelectorAll(".category-container a"), "click", changeCategory);
+  }
+
+  function createCategory(event) {
+    let categoryName = event.target.value;
+    if (event.keyCode === 13 && categoryName != "") {
+      categories.push({
+        name: categoryName,
+        icon: "ms-Icon--BulletedList2",
+        tasks: [],
+      });
+      currentPage = categoryName;
+      getSnippet("category-snippet", renderCategories);
+      getSnippet("middle-column-snippet", renderTasks);
+      changeCategory(event);
+      event.target.value = "";
+    }
+  }
+
+  function createTask(event) {
+    if (event.keyCode === 13 && event.target.value != "") {
+      let taskInput = document.querySelector(
+        ".task-list-container .add-task input"
+      );
+      getTasks(currentPage).push({ name: taskInput.value, steps: [] });
+      getSnippet("task-snippet", renderTasks);
+      taskInput.value = "";
+    }
+  }
+
+  function getTasks(categoryName) {
+    for (let category of categories) {
+      if (category.name === categoryName) {
+        return category.tasks;
+      }
+    }
+    return [];
+  }
+
+  function renderTasks(templateHtml) {
+    let html = "";
+    let temp;
+    for (let task of getTasks(currentPage)) {
       temp = insertProperty(templateHtml, "taskName", task.name);
       html = insertProperty(temp, "stepCount", task.steps.length) + html;
     }
-    insertHtml(tasksContainer, html);
-    let checkboxes = document.querySelectorAll(".tickbox-container");
-    console.log(checkboxes);
-    for (let node of checkboxes) {
-      console.log(checkboxes[0]);
-      node.addEventListener("click", makeTaskCompleted);
-    }
+    insertHtml(".tasks", html);
+    let checkboxes = document.querySelectorAll(".tasks .tickbox-container");
+    console.log(document.querySelectorAll(".task-name"));
+    bindEventListenerToAll(
+      document.querySelectorAll("span.task-name"),
+      "click",
+      toggleTaskPanel
+    );
+    bindEventListenerToAll(checkboxes, "click", markAsCompleted);
   }
 
-  function getTaskSteps(taskName) {
-    let steps;
-    for (let task of tasks.get(currentPage)) {
+  function getSteps(taskName) {
+    for (let task of getTasks(currentPage)) {
       if (task.name === taskName) {
-        steps = task.steps;
+        return task.steps;
       }
     }
-    return steps;
+    return [];
   }
 
   function createStep(key) {
     if (key.code === "Enter") {
-      let stepInput = document.querySelector(createStepInput);
-      let taskName = document.querySelector("#task-name").innerText;
-      let steps = getTaskSteps(taskName);
+      let stepInput = document.querySelector(".add-steps input");
+      let steps = getSteps(currentTask);
       steps.push(stepInput.value);
-      getSnippet("step-snippet", addStepsToPage, steps);
+      getSnippet("step-snippet", renderSteps);
       stepInput.value = "";
     }
   }
 
-  function addStepsToPage(templateHtml, steps) {
+  function renderSteps(templateHtml) {
     let html = "";
-    for (let step of steps) {
+    for (let step of getSteps(currentTask)) {
       html += insertProperty(templateHtml, "step", step);
     }
-    insertHtml(stepsContainer, html);
-    getSnippet("task-snippet", addTasksToPage);
+    insertHtml(".steps-container", html);
+    bindEventListenerToAll(
+      document.querySelectorAll(".task-details button.tickbox-container"),
+      "click",
+      markAsCompleted
+    );
+    getSnippet("task-snippet", renderTasks);
   }
 
-  function openTaskPanel(event) {
-    let targetElement = event.target;
-    if (targetElement.matches("span")) {
-      let taskName = event.target.innerText;
-      let panel = document.querySelector(taskPanel);
-      console.log(getTaskSteps(taskName));
-      getSnippet("step-snippet", addStepsToPage, getTaskSteps(taskName));
-      document.getElementById("task-name").innerText = taskName;
-      panel.style.width = "25%";
-      panel.style.visibility = "visible";
-    }
+  function toggleTaskPanel(event) {
+    let taskName = event.target.innerText;
+    currentTask = taskName;
+    let panel = document.querySelector(".right-column");
+    getSnippet("step-snippet", renderSteps);
+    document.getElementById("task-name").innerText = taskName;
+    panel.classList.toggle("open-task-panel");
   }
 
-  function loadMyDay() {
-    currentPage = "myDay";
-    getSnippet("middle-column-snippet", showMyDay);
-    getSnippet("task-snippet", addTasksToPage);
-  }
-
-  function showMyDay(templateHtml) {
+  function renderMiddlePage(templateHtml) {
     let html = insertProperty(templateHtml, "title", "My Day");
     insertHtml(".middle-column", html);
     document.querySelector(".date-container").innerText = getTodayDate();
+    bindEventListener("#sidebar-open-btn", "click", toggleSideBar);
+    bindEventListener(
+      ".task-list-container .add-task input",
+      "keyup",
+      createTask
+    );
   }
 
-  function loadImportant() {
-    currentPage = "important";
-    getSnippet("middle-column-snippet", showImportant);
-    getSnippet("task-snippet", addTasksToPage);
-  }
-
-  function showImportant(templateHtml) {
-    let html = insertProperty(templateHtml, "title", "Important");
-    insertHtml(middleColumn, html);
-    applyBlueColor(".toolbar-title");
-  }
-
-  function loadList(event) {
-    if (event.target.matches("a")) {
-      currentPage = event.target.innerText;
-      getSnippet("middle-column-snippet", showList);
-      getSnippet("task-snippet", addTasksToPage);
-      event.stopPropagation();
+  function changeCategory(event) {
+    currentPage = event.target.innerText;
+    let pageTitle = document.querySelector(".toolbar span.toolbar-title");
+    pageTitle.innerText = currentPage;
+    getSnippet("task-snippet", renderTasks);
+    if (currentPage === "My Day") {
+      document.querySelector(".toolbar span.date-container").classList.remove("hide-element");
+      pageTitle.classList.remove("color-blue");
+    } else {
+      document.querySelector(".toolbar span.date-container").classList.add("hide-element");
+      pageTitle.classList.add("color-blue");
     }
   }
 
-  function showList(templateHtml) {
-    let html = insertProperty(templateHtml, "title", currentPage);
-    insertHtml(middleColumn, html);
-    applyBlueColor(".toolbar-title");
-  }
-
-  function applyBlueColor(element) {
-    document.querySelector(element).classList.add("color-blue");
-  }
-
-  function makeTaskCompleted(event) {
+  function markAsCompleted(event) {
     let targetElement = event.target;
     if (targetElement.matches("i")) {
       targetElement.parentNode.children[0].classList.toggle(

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html dir="ltr" lang="en">
 
 <head>
-    <title>To-Do</title>
+    <title>To Do</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="https://res-1.cdn.office.net/todo/430299_2.58.3/favicon.ico">
@@ -13,44 +13,49 @@
 </head>
 
 <body>
+    
+    <!-- Nav bar section -->
     <div class="navbar">
-        <span><span class="icon ms-Icon ms-Icon--WaffleOffice365"></span>
-            <span class="navbar-title">To Do</span></span>
+        <span>
+            <span class="icon ms-Icon ms-Icon--WaffleOffice365"></span>
+            <span class="navbar-title">To Do</span>
+        </span>
     </div>
+
+    <!-- Main Page -->
     <div class="grid-container">
+
+        <!--Left Sidebar -->
         <div class="left-column">
             <div>
                 <div class="sidebar-header">
                     <button class="sidebar-btn" id="sidebar-close-btn"> <i
                             class="icon ms-Icon ms-Icon--GlobalNavButton"></i></button>
                 </div>
-                <div class="sidebar-content">
-                    <div id="my-day"><i class="icon ms-Icon ms-Icon--Sunny" aria-hidden="true"></i><a>My Day</a><span class=".task-count"></span>
-                    </div>
-                    <div id="important"><i class="icon ms-Icon ms-Icon--FavoriteStar"
-                            aria-hidden="true"></i><a>Important</a><span class=".task-count"></span></div>
-                    <div dir="ltr"><i class="icon ms-Icon ms-Icon--Calendar" aria-hidden="true"></i><a>Planned</a></div>
-                    <div><i class="icon ms-Icon ms-Icon--Contact" aria-hidden="true"></i><a>Assigned
-                            to
-                            me</a></div>
-                    <div><i class="icon ms-Icon ms-Icon--Home" aria-hidden="true"></i><a>Tasks</a>
-                    </div>
-                    <section class="lists">
-                        <div class="newlist-container"><span><i class="icon ms-Icon ms-Icon--Add"
-                                    aria-hidden="true"></i> <input type="text" name="task"
-                                    placeholder="New List"></span><span><i
-                                    class="icon svgIcon ms-Icon create-group-24"><svg focusable="false"
-                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24">
-                                        <g fill-rule="evenodd" stroke="none" stroke-width="1">
-                                            <path
-                                                d="M16.9996,3.9997 L18.0006,3.9997 L18.0006,6.0007 L20.0006,6.0007 L20.0006,7.0007 L18.0006,7.0007 L18.0006,8.9997 L16.9996,8.9997 L16.9996,7.0007 L14.9996,7.0007 L14.9996,6.0007 L16.9996,6.0007 L16.9996,3.9997 Z M19,16.5 L19,12 L20,12 L20,16.5 C20,17.879 18.878,19 17.5,19 L6.5,19 C5.122,19 4,17.879 4,16.5 L4,6.5 C4,5.121 5.122,4 6.5,4 L12,4 L12,5 L6.5,5 C5.673,5 5,5.673 5,6.5 L5,16.5 C5,17.327 5.673,18 6.5,18 L17.5,18 C18.327,18 19,17.327 19,16.5 Z M8,15 L8,8 L9,8 L9,15 L8,15 Z">
-                                            </path>
-                                        </g>
-                                    </svg></i></span>
-                        </div>
-                    </section>
+                <div class="default-categories">
+
                 </div>
+
+                <div class="category-container">
+
+                </div>
+
+                <div class="newlist-container"><span><i class="icon ms-Icon ms-Icon--Add" aria-hidden="true"></i>
+                    <input type="text" name="task" placeholder="New List"></span><span><i
+                        class="icon svgIcon ms-Icon create-group-24"><svg focusable="false" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <g fill-rule="evenodd" stroke="none" stroke-width="1">
+                                <path
+                                    d="M16.9996,3.9997 L18.0006,3.9997 L18.0006,6.0007 L20.0006,6.0007 L20.0006,7.0007 L18.0006,7.0007 L18.0006,8.9997 L16.9996,8.9997 L16.9996,7.0007 L14.9996,7.0007 L14.9996,6.0007 L16.9996,6.0007 L16.9996,3.9997 Z M19,16.5 L19,12 L20,12 L20,16.5 C20,17.879 18.878,19 17.5,19 L6.5,19 C5.122,19 4,17.879 4,16.5 L4,6.5 C4,5.121 5.122,4 6.5,4 L12,4 L12,5 L6.5,5 C5.673,5 5,5.673 5,6.5 L5,16.5 C5,17.327 5.673,18 6.5,18 L17.5,18 C18.327,18 19,17.327 19,16.5 Z M8,15 L8,8 L9,8 L9,15 L8,15 Z">
+                                </path>
+                            </g>
+                        </svg></i></span>
+                </div>
+
+                <section class="lists">
+                    
+                </section>
+
 
             </div>
             <div class="sidebar-bottom">
@@ -62,23 +67,25 @@
             </div>
         </div>
 
+        <!-- Main Content -->
         <div class="middle-column">
-         
+
         </div>
 
+        <!-- task details panel -->
         <div class="right-column">
             <div>
                 <div class="task-details">
                     <div class="task-title">
                         <span><button class="tickbox-container">
-                            <i class="icon ms-Icon ms-Icon--SkypeCircleCheck"></i>
-                            <i class="icon ms-Icon ms-Icon--RadioBtnOff"></i>
-                            <i class="icon ms-Icon ms-Icon--Completed"></i></button>
+                                <i class="icon ms-Icon ms-Icon--SkypeCircleCheck"></i>
+                                <i class="icon ms-Icon ms-Icon--RadioBtnOff"></i>
+                                <i class="icon ms-Icon ms-Icon--Completed"></i></button>
                             <span id="task-name"></span></span>
                         <span><i class="icon ms-Icon ms-Icon--FavoriteStar"></i></span>
                     </div>
                     <div class="steps-container">
-                        
+
                     </div>
                     <div class="add-steps">
                         <span> <button>
@@ -97,9 +104,11 @@
                         <div><span><i class="icon ms-Icon ms-Icon--Ringer" aria-hidden="true"></i><span>Remind
                                     me</span></span>
                         </div>
-                        <div><span dir="ltr"><i class="icon ms-Icon ms-Icon--Calendar" aria-hidden="true"></i><span>Add
-                                    due
-                                    date</span></span>
+                        <div>
+                            <span dir="ltr">
+                                <i class="icon ms-Icon ms-Icon--Calendar" aria-hidden="true"></i>
+                                <span> Add due date </span>
+                            </span>
                         </div>
                         <div><span><i class="icon ms-Icon ms-Icon--RecurringEvent"
                                     aria-hidden="true"></i><span>Repeat</span></span>

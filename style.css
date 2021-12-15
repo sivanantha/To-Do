@@ -71,7 +71,6 @@ button {
   display: flex;
   flex: 1 1 1px;
   flex-direction: column;
-  overflow-y: auto;
 }
 
 .left-column {
@@ -79,7 +78,7 @@ button {
   width: 0px;
   overflow-x: hidden;
   overflow-y: auto;
-  transition: width 0.3s, visibility 0.2s;
+  transition: 0.3s;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -101,26 +100,26 @@ button {
   box-shadow: 0 0 0 1px #ededed;
 }
 
-.sidebar-content {
+.default-categories {
   display: flex;
   flex-direction: column;
 }
-.sidebar-content div {
+.default-categories div, .newlist-container{
   height: 35px;
   padding-left: 16px;
 }
 
-.sidebar-content div:hover {
+.default-categories div:hover {
   background-color: #fafafa;
   cursor: pointer;
 }
 
-.sidebar-content div:active {
+.default-categories div:active {
   font-weight: 600;
   background-color: #ededed;
 }
 
-.sidebar-content a {
+.default-categories a {
   display: inline-block;
   font-size: 1vw;
   font-weight: 200;
@@ -486,7 +485,7 @@ div.task-description:hover {
 .lists .icon, .ms-Icon--Home, .task-title span:first-child i,
 .add-steps i,
 .task-details .added-to-myday,
-.added-to-myday span:first-child i, .sidebar-content div:active, .ms-Icon--ToDoLogoOutline, .task .ms-Icon--RadioBtnOff, .step .ms-Icon--RadioBtnOff, .color-blue, .tickbox-container i {
+.added-to-myday span:first-child i, .default-categories div:active, .ms-Icon--ToDoLogoOutline, .task .ms-Icon--RadioBtnOff, .step .ms-Icon--RadioBtnOff, .color-blue, .tickbox-container i {
   color: #2e5cdb;
 }
 
@@ -501,4 +500,17 @@ div.task-description:hover {
 .task-count {
   float: right;
   font-weight: 600;
+}
+
+.open-sidebar {
+  width: 21vw;
+}
+
+.hide-element {
+  display: none;
+}
+
+.open-task-panel {
+  width: 25%;
+  visibility: visible;
 }
