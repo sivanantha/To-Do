@@ -13,8 +13,8 @@
 </head>
 
 <body>
-    
-    <!-- Nav bar section -->
+
+    <!-- NavBar Section -->
     <div class="navbar">
         <span>
             <span class="icon ms-Icon ms-Icon--WaffleOffice365"></span>
@@ -29,9 +29,11 @@
         <div class="left-column">
             <div>
                 <div class="sidebar-header">
-                    <button class="sidebar-btn" id="sidebar-close-btn"> <i
-                            class="icon ms-Icon ms-Icon--GlobalNavButton"></i></button>
+                    <button class="sidebar-btn" id="sidebar-close-btn">
+                        <i class="icon ms-Icon ms-Icon--GlobalNavButton"></i>
+                    </button>
                 </div>
+
                 <div class="default-categories">
 
                 </div>
@@ -40,25 +42,27 @@
 
                 </div>
 
-                <div class="newlist-container"><span><i class="icon ms-Icon ms-Icon--Add" aria-hidden="true"></i>
-                    <input type="text" name="task" placeholder="New List"></span><span><i
-                        class="icon svgIcon ms-Icon create-group-24"><svg focusable="false" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <g fill-rule="evenodd" stroke="none" stroke-width="1">
-                                <path
-                                    d="M16.9996,3.9997 L18.0006,3.9997 L18.0006,6.0007 L20.0006,6.0007 L20.0006,7.0007 L18.0006,7.0007 L18.0006,8.9997 L16.9996,8.9997 L16.9996,7.0007 L14.9996,7.0007 L14.9996,6.0007 L16.9996,6.0007 L16.9996,3.9997 Z M19,16.5 L19,12 L20,12 L20,16.5 C20,17.879 18.878,19 17.5,19 L6.5,19 C5.122,19 4,17.879 4,16.5 L4,6.5 C4,5.121 5.122,4 6.5,4 L12,4 L12,5 L6.5,5 C5.673,5 5,5.673 5,6.5 L5,16.5 C5,17.327 5.673,18 6.5,18 L17.5,18 C18.327,18 19,17.327 19,16.5 Z M8,15 L8,8 L9,8 L9,15 L8,15 Z">
-                                </path>
-                            </g>
-                        </svg></i></span>
+                <div class="newlist-container">
+                    <span>
+                        <i class="icon ms-Icon ms-Icon--Add" aria-hidden="true"></i>
+                        <input type="text" name="task" placeholder="New List">
+                    </span>
+                    <span>
+                        <i class="icon svgIcon ms-Icon create-group-24"><svg focusable="false" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <g fill-rule="evenodd" stroke="none" stroke-width="1">
+                                    <path
+                                        d="M16.9996,3.9997 L18.0006,3.9997 L18.0006,6.0007 L20.0006,6.0007 L20.0006,7.0007 L18.0006,7.0007 L18.0006,8.9997 L16.9996,8.9997 L16.9996,7.0007 L14.9996,7.0007 L14.9996,6.0007 L16.9996,6.0007 L16.9996,3.9997 Z M19,16.5 L19,12 L20,12 L20,16.5 C20,17.879 18.878,19 17.5,19 L6.5,19 C5.122,19 4,17.879 4,16.5 L4,6.5 C4,5.121 5.122,4 6.5,4 L12,4 L12,5 L6.5,5 C5.673,5 5,5.673 5,6.5 L5,16.5 C5,17.327 5.673,18 6.5,18 L17.5,18 C18.327,18 19,17.327 19,16.5 Z M8,15 L8,8 L9,8 L9,15 L8,15 Z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </i>
+                    </span>
                 </div>
-
-                <section class="lists">
-                    
-                </section>
-
-
             </div>
-            <div class="sidebar-bottom">
+
+            <!-- Left Sidebar Footer -->
+            <div class="sidebar-footer">
                 <a><i class="icon ms-Icon ms-Icon--Mail" aria-hidden="true"></i></a>
                 <a dir="ltr"><i class="icon ms-Icon ms-Icon--Calendar" aria-hidden="true"></i></a>
                 <a><i class="icon ms-Icon ms-Icon--People" aria-hidden="true"></i></a>
@@ -72,71 +76,112 @@
 
         </div>
 
-        <!-- task details panel -->
+        <!-- Task Details Panel -->
         <div class="right-column">
             <div>
                 <div class="task-details">
                     <div class="task-title">
-                        <span><button class="tickbox-container">
+                        <span>
+                            <button class="tickbox-container">
                                 <i class="icon ms-Icon ms-Icon--SkypeCircleCheck"></i>
                                 <i class="icon ms-Icon ms-Icon--RadioBtnOff"></i>
-                                <i class="icon ms-Icon ms-Icon--Completed"></i></button>
-                            <span id="task-name"></span></span>
-                        <span><i class="icon ms-Icon ms-Icon--FavoriteStar"></i></span>
+                                <i class="icon ms-Icon ms-Icon--Completed"></i>
+                            </button>
+                            <span id="task-name"></span>
+                        </span>
+                        <span>
+                            <i class="icon ms-Icon ms-Icon--FavoriteStar"></i>
+                        </span>
                     </div>
+
                     <div class="steps-container">
 
                     </div>
+
                     <div class="add-steps">
-                        <span> <button>
+                        <span>
+                            <button>
                                 <i class="icon ms-Icon ms-Icon--Add" aria-hidden="true"></i>
                             </button>
-                            <input type="text" name="task" placeholder="Add step"></span>
+                            <input type="text" name="task" placeholder="Add step">
+                        </span>
                     </div>
 
                     <div class="added-to-myday">
-                        <span><i class="icon ms-Icon ms-Icon--Sunny" aria-hidden="true"></i>
-                            <span>Added to My Day</span></span>
-                        <span><i class="icon ms-Icon ms-Icon--Cancel" aria-hidden="true"></i></span>
+                        <span>
+                            <i class="icon ms-Icon ms-Icon--Sunny" aria-hidden="true"></i>
+                            <span>Added to My Day</span>
+                        </span>
+                        <span>
+                            <i class="icon ms-Icon ms-Icon--Cancel" aria-hidden="true"></i>
+                        </span>
                     </div>
 
                     <div class="remainder">
-                        <div><span><i class="icon ms-Icon ms-Icon--Ringer" aria-hidden="true"></i><span>Remind
-                                    me</span></span>
+                        <div>
+                            <span>
+                                <i class="icon ms-Icon ms-Icon--Ringer" aria-hidden="true"></i>
+                                <span>Remind me</span>
+                            </span>
                         </div>
+
                         <div>
                             <span dir="ltr">
                                 <i class="icon ms-Icon ms-Icon--Calendar" aria-hidden="true"></i>
                                 <span> Add due date </span>
                             </span>
                         </div>
-                        <div><span><i class="icon ms-Icon ms-Icon--RecurringEvent"
-                                    aria-hidden="true"></i><span>Repeat</span></span>
+
+                        <div>
+                            <span>
+                                <i class="icon ms-Icon ms-Icon--RecurringEvent" aria-hidden="true">
+                                </i>
+                                <span>Repeat</span>
+                            </span>
                         </div>
                     </div>
 
-                    <div><span><i class="icon svgIcon ms-Icon category-16"><svg width="15" height="15"
-                                    viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <div>
+                        <span>
+                            <i class="icon svgIcon ms-Icon category-16"><svg width="15" height="15" viewBox="0 0 15 15"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M11.5 4.5C11.3594 4.5 11.2292 4.47396 11.1094 4.42188C10.9896 4.36979 10.8828 4.29948 10.7891 4.21094C10.7005 4.11719 10.6302 4.01042 10.5781 3.89062C10.526 3.77083 10.5 3.64062 10.5 3.5C10.5 3.35938 10.526 3.22917 10.5781 3.10938C10.6302 2.98958 10.7005 2.88542 10.7891 2.79688C10.8828 2.70312 10.9896 2.63021 11.1094 2.57812C11.2292 2.52604 11.3594 2.5 11.5 2.5C11.6406 2.5 11.7708 2.52604 11.8906 2.57812C12.0104 2.63021 12.1146 2.70312 12.2031 2.79688C12.2969 2.88542 12.3698 2.98958 12.4219 3.10938C12.474 3.22917 12.5 3.35938 12.5 3.5C12.5 3.64062 12.474 3.77083 12.4219 3.89062C12.3698 4.01042 12.2969 4.11719 12.2031 4.21094C12.1146 4.29948 12.0104 4.36979 11.8906 4.42188C11.7708 4.47396 11.6406 4.5 11.5 4.5ZM8 0H15V7L7 15L0 8L8 0ZM14 6.58594V1H8.41406L1.41406 8L7 13.5859L14 6.58594Z"
-                                        fill="#666666"></path>
-                                </svg></i><span>Pick a category</span></span></div>
+                                        fill="#666666">
+                                    </path>
+                                </svg>
+                            </i>
+                            <span>Pick a category</span>
+                        </span>
+                    </div>
 
-                    <div><span><i class="icon ms-Icon ms-Icon--Attach" aria-hidden="true"></i><span>Add
-                                file</span></span></div>
+                    <div>
+                        <span>
+                            <i class="icon ms-Icon ms-Icon--Attach" aria-hidden="true"></i>
+                            <span>Add file</span>
+                        </span>
+                    </div>
+
                     <div class="task-description">
                         <textarea></textarea>
                     </div>
                 </div>
             </div>
+
             <div class="right-column-footer">
-                <button id="task-panel-close-btn" dir="ltr"><i class="icon ms-Icon ms-Icon--ClosePane"
-                        aria-hidden="true"></i></button>
+                <button id="task-panel-close-btn" dir="ltr">
+                    <i class="icon ms-Icon ms-Icon--ClosePane" aria-hidden="true"></i>
+                </button>
+
                 <span>created today</span>
-                <span><i class="icon ms-Icon ms-Icon--Delete" aria-hidden="true"></i></span>
+
+                <span>
+                    <i class="icon ms-Icon ms-Icon--Delete" aria-hidden="true"></i>
+                </span>
             </div>
         </div>
     </div>
+
 </body>
 
 </html>
