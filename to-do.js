@@ -354,7 +354,7 @@
    * Toggles the checkbox and strike througth the text of the task 
    * or step element which triggered the event.
    * 
-   * @param {*} event the event object passed by the event handler.
+   * @param event the event object passed by the event handler.
    */
   function toggleCheckboxAndStrikeThrough(event) {
     let targetElement = event.target;
