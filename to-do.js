@@ -86,7 +86,7 @@
    * @returns the html with inserted property value.
    */
   function insertProperty(html, propertyName, propertyValue) {
-    var propertyToReplace = "{{" + propertyName + "}}";
+    let propertyToReplace = "{{" + propertyName + "}}";
     html = html.replace(new RegExp(propertyToReplace, "g"), propertyValue);
     return html;
   }
@@ -160,7 +160,7 @@
    */
   function createCategory(event) {
     let categoryName = event.target.value;
-    if (event.keyCode === 13 && categoryName != "") {
+    if (event.keyCode === 13 && categoryName) {
       categories.push({
         name: categoryName,
         icon: "ms-Icon--BulletedList2",
@@ -183,7 +183,7 @@
    */
   function createTask(event) {
     let taskInput = event.target.value;
-    if (event.keyCode === 13 && taskInput != "") {
+    if (event.keyCode === 13 && taskInput) {
       getTasks(currentPage).push({ name: taskInput, steps: [] });
       getSnippet("task-snippet", renderTasks);
       event.target.value = "";
@@ -191,7 +191,7 @@
   }
 
   /**
-   * Fetches the specified categories tasks.
+   * Fetches the specified category's tasks.
    * 
    * @param categoryName the category name whose tasks to be fetched.
    * @returns the array containing tasks if category is found, otherwise an 
@@ -253,7 +253,7 @@
    */
   function createStep(event) {
     let stepInput = event.target.value;
-    if (event.code === "Enter" && stepInput != "") {
+    if (event.code === "Enter" && stepInput) {
       let steps = getSteps(currentTask);
       steps.push(stepInput);
       getSnippet("step-snippet", renderSteps);
